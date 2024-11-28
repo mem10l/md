@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<form>
+    <p>hello world</p>
+    <br>
+    <div>Click me!</div>
+</form>
+<script>
+
+const form = document.querySelector("form");
+
+form.addEventListener("click", function (e) {
+    if (e.target.tagName === "P") {
+        e.target.remove(); 
+    } else {
+        
+        if (!document.querySelector("p")) {
+            const newP = document.createElement("p");
+            newP.textContent = "hello world";
+            form.prepend(newP);
+
+            newP.addEventListener("click", addImageOnClick);
+        }
+    }
+});
+
+function addImageOnClick(e) {
+    let img = document.createElement("img");
+    img.src =
+        "https://digitalnaitik.com/wp-content/uploads/2023/12/why.webp";
+    document.body.appendChild(img);
+
+    e.currentTarget.removeEventListener("click", addImageOnClick);
+}
+
+const div = document.querySelector("div");
+if (div) {
+    div.addEventListener("click", addImageOnClick);
+}
+</script>
+<style>
+form {
+    height: 200px;
+  width: 200px;
+  background-color: #555;
+}
+p {
+    color: white;
+}
+div {
+    color: lightblue;
+}
+</style>
+</body>
+</html>
